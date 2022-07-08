@@ -1,0 +1,17 @@
+[
+    {
+        "id": "1",
+        "imgUrl": "../../public/images/logo/logo_01.png",
+        "ICP": "京ICP备19004658号-1"
+    },
+    {
+        "id": "2",
+        "imgUrl": "../../public/images/logo/logo_02.png",
+        "ICP": "京ICP备19004658号-2"
+    },
+    {
+        "id": "3",
+        "imgUrl": "../../public/images/logo/logo_03.png",
+        "ICP": "京ICP备19004658号-3"
+    }
+]

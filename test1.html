@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+</head>
+
+<body>
+    <h2 id="mark">京ICP备19004658号-1</h2>
+    <img src="./logo/logo_01.png" alt="">
+    <script>
+        const mark = document.getElementById("mark")
+        const img = document.querySelector('img');
+        var domain = document.domain;
+        console.log(domain);
+        if (domain == "www.rocky.com" || domain == "rocky.com") {
+            axios({
+                method: 'GET',
+                url: 'http://127.0.0.1:8000',
+                responseType: 'json',//接收json数据
+            }).then(
+                response => {
+                    let data1 = response.data[0];
+                    mark.innerHTML = data1.ICP;
+                    img.setAttribute("src", data1.imgUrl);
+                }, error => {
+                    console.log(error);
+                }
+            )
+        }
+        else if (domain == "www.360.com" || domain == "360.com") {
+            axios({
+                method: 'GET',
+                url: "http://localhost:8000",
+                responseType: 'json',//接收json数据
+            }).then(
+                response => {
+                    let data2 = response.data[1];
+                    mark.innerHTML = data2.ICP;
+                    img.setAttribute("src", data2.imgUrl);
+                }, error => {
+                    console.log(error);
+                }
+            )
+        }
+        else if (domain == "www.8848.com" || domain == "8848.com") {
+            axios({
+                method: 'GET',
+                url: "http://localhost:8000",
+                responseType: 'json',//接收json数据
+            }).then(
+                response => {
+                    let data3 = response.data[2];
+                    mark.innerHTML = data3.ICP;
+                    img.setAttribute("src", data3.imgUrl);
+                }, error => {
+                    console.log(error);
+                }
+            )
+        } else {
+            alert('你输入的域名不存在');
+        }
+    </script>
+</body>
+
+</html>
