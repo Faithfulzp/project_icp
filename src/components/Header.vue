@@ -47,15 +47,12 @@ export default {
     },
     async mounted() {
         let result = await reqGetData();
-        result.map(item => {
-            this.imgUrl = item.imgUrl;
-        })
-        /* for (let i = 0; i < result.length; i++){
+        for (let i = 0; i < result.length; i++){
             if(result[i].domain === this.domain){
                 this.imgUrl = result[i].imgUrl;
                 console.log(this.imgUrl);
             }
-        } */
+        }
     },
 }
 </script>
