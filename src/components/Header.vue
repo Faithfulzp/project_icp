@@ -35,25 +35,9 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import { reqGetData } from "@/api";
 export default {
     name: 'Header',
-    props: ["domain"],
-    data() {
-        return {
-            imgUrl: '',
-        }
-    },
-    async mounted() {
-        let result = await reqGetData();
-        for (let i = 0; i < result.length; i++){
-            if(result[i].domain === this.domain){
-                this.imgUrl = result[i].imgUrl;
-                console.log(this.imgUrl);
-            }
-        }
-    },
+    props: ["domain","imgUrl"],
 }
 </script>
 

@@ -1,9 +1,9 @@
 <template>
     <div>
         <Section></Section>
-        <Header :domain="domain"></Header>
+        <Header :domain="domain" :imgUrl="imgUrl"></Header>
         <Nav></Nav>
-        <Footer :domain="domain"></Footer>
+        <Footer :domain="domain" :ICP="ICP"></Footer>
     </div>
 </template>
 
@@ -12,7 +12,7 @@ import Footer from './components/Footer.vue'
 import Nav from './components/Nav.vue'
 import Header from './components/Header.vue'
 import Section from './components/Section.vue'
-// import { mapState } from 'vuex'
+import { reqGetData } from "@/api";
 export default {
     name: 'App',
     components: {
@@ -23,8 +23,24 @@ export default {
     },
     data() {
         return {
-            domain: document.domain
+            domain: document.domain,
+            imgUrl: '',
+            ICP:'',
         }
+    },
+    methods: {
+        async getData() {
+            let result = await reqGetData();
+            for (let i = 0; i < result.length; i++) {
+                if (result[i].domain === this.domain) {
+                    this.imgUrl = result[i].imgUrl;
+                    this.ICP = result[i].ICP;
+                }
+            }
+        }
+    },
+    mounted() {
+        this.getData();
     },
 }
 </script>

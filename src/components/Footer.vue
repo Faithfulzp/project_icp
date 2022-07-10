@@ -50,24 +50,9 @@
 </template>
 
 <script>
-import { reqGetData } from "@/api";
 export default {
     name: 'Footer',
-    props: ["domain"],
-    data() {
-        return {
-            ICP:""
-        }
-    },
-    async mounted() {
-        let result = await reqGetData();
-        for (let i = 0; i < result.length; i++){
-            if(result[i].domain === this.domain){
-                this.ICP = result[i].ICP;
-            }
-        }
-    },
-    
+    props: ["domain","ICP"],
 }
 </script>
 
