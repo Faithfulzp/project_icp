@@ -1,22 +1,9 @@
 <template>
-  <header class="header w">
+    <header class="header w">
         <!-- logo制作 -->
-        <div class="logo" v-if="dataList[0]">
-            <h1 v-if="mydomain==='localhost'">
-                <img :src="dataList[0].imgUrl">
-            </h1>
-            <h1 v-if="mydomain==='127.0.0.1'">
-                <img :src="dataList[0].imgUrl">
-            </h1>
-            <h1 v-if="mydomain===dataList[0].domain">
-                <img :src="dataList[0].imgUrl">
-            </h1>
-            <h1 v-if="mydomain===dataList[1].domain">
-                <img :src="dataList[1].imgUrl">
-            </h1>
-            <h1 v-if="mydomain===dataList[2].domain">
-                <img :src="dataList[2].imgUrl">
-            </h1>
+        <!-- v-if="dataList[0]" -->
+        <div class="logo" v-if="imgUrl">
+            <img :src="require('../../public/images/logo/'+ imgUrl)">
         </div>
         <!-- hotwords 热点词模块制作 -->
         <div class="hotwords">
@@ -49,16 +36,26 @@
 
 <script>
 import { mapState } from 'vuex'
+import { reqGetData } from "@/api";
 export default {
     name: 'Header',
     props: ["domain"],
     data() {
         return {
-            mydomain:this.domain,
+            imgUrl: '',
         }
     },
-    computed: {
-        ...mapState('data', ['dataList']),
+    async mounted() {
+        let result = await reqGetData();
+        result.map(item => {
+            this.imgUrl = item.imgUrl;
+        })
+        /* for (let i = 0; i < result.length; i++){
+            if(result[i].domain === this.domain){
+                this.imgUrl = result[i].imgUrl;
+                console.log(this.imgUrl);
+            }
+        } */
     },
 }
 </script>

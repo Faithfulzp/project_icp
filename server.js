@@ -1,8 +1,10 @@
 //1.引入express
 const express = require('express');
-
 //2.创建应用对象
 const app = express();
+// // 告诉服务器去哪里找静态资源文件
+// const path = require('path');
+// app.use(express.static(path.join(__dirname, '/public')));
 //3.创建路由规则
 //request 是对请求报文的封装
 //response 是对响应报文的封装
@@ -13,24 +15,41 @@ app.all('*', (request, response) => {
     response.setHeader('Access-Control-Allow-Headers', '*');
     //允许接收任何请求方式
     response.setHeader('Access-Control-Allow-Method', '*');
-    
+
     const data = [
         {
             "id": "1",
-            "domain":"www.rocky.com",
-            "imgUrl": "./images/logo/logo_01.png",
+            "backColor": "green",
+            "domain": "127.0.0.1",
+            "imgUrl": 'logo_1.png',
+            "ICP": "京ICP备19004658号-1"
+        },
+        {
+            "id": "1",
+            "backColor": "green",
+            "domain": "localhost",
+            "imgUrl": "logo_1.png",
+            "ICP": "京ICP备19004658号-1"
+        },
+        {
+            "id": "1",
+            "backColor": "green",
+            "domain": "www.rocky.com",
+            "imgUrl": "logo_1.png",
             "ICP": "京ICP备19004658号-1"
         },
         {
             "id": "2",
-            "domain":"www.360.com",
-            "imgUrl": "./images/logo/logo_02.png",
+            "backColor": "yellow",
+            "domain": "www.360.com",
+            "imgUrl": "logo_2.png",
             "ICP": "京ICP备19004658号-2"
         },
         {
             "id": "3",
-            "domain":"www.8848.com",
-            "imgUrl": "./images/logo/logo_03.png",
+            "backColor": "red",
+            "domain": "www.8848.com",
+            "imgUrl": "logo_3.png",
             "ICP": "京ICP备19004658号-3"
         }
     ];

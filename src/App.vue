@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <Section></Section>
-    <Header :domain="domain"></Header>
-    <Nav></Nav>
-    <Footer :domain="domain"></Footer>
-  </div>
+    <div>
+        <Section></Section>
+        <Header :domain="domain"></Header>
+        <Nav></Nav>
+        <Footer :domain="domain"></Footer>
+    </div>
 </template>
 
 <script>
@@ -14,24 +14,18 @@ import Header from './components/Header.vue'
 import Section from './components/Section.vue'
 // import { mapState } from 'vuex'
 export default {
-  name: 'App',
-  components: {
-    Footer,
-    Nav,
-    Header,
-    Section
+    name: 'App',
+    components: {
+        Footer,
+        Nav,
+        Header,
+        Section
     },
     data() {
         return {
-            domain:document.domain
+            domain: document.domain
         }
     },
-    mounted() {
-      this.$store.dispatch('data/getData');
-    },
-    // computed: {
-    //     ...mapState('data', ['data']),
-    // },
 }
 </script>
 
@@ -48,6 +42,7 @@ export default {
     font-style: normal;
     font-display: block;
 }
+
 /* 版心 */
 .w {
     width: 1000px;
@@ -65,6 +60,7 @@ export default {
 .style_green {
     color: #27ba9b;
 }
+
 /* 把我们所有标签的内外边距清零 */
 * {
     margin: 0;

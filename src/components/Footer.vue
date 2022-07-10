@@ -40,22 +40,8 @@
                         <li></li>
                         <li><a href="#">友情链接</a></li>
                     </ul>
-                    <div id="mark" v-if="dataList[0]">
-                        <p v-if="mydomain==='localhost'">
-                            {{dataList[0].ICP}}
-                        </p>
-                        <p v-if="mydomain==='127.0.0.1'">
-                            {{dataList[0].ICP}}
-                        </p>
-                        <p v-if="mydomain===dataList[0].domain">
-                            {{dataList[0].ICP}}
-                        </p>
-                        <p v-if="mydomain===dataList[1].domain">
-                            {{dataList[1].ICP}}
-                        </p>
-                        <p v-if="mydomain===dataList[2].domain">
-                            {{dataList[2].ICP}}
-                        </p>
+                    <div id="mark">
+                        <p>{{ICP}}</p>
                     </div>
                 </div>
             </div>
@@ -64,17 +50,22 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { reqGetData } from "@/api";
 export default {
     name: 'Footer',
     props: ["domain"],
     data() {
         return {
-            mydomain:this.domain,
+            ICP:""
         }
     },
-    computed: {
-        ...mapState('data', ['dataList']),
+    async mounted() {
+        let result = await reqGetData();
+        for (let i = 0; i < result.length; i++){
+            if(result[i].domain === this.domain){
+                this.ICP = result[i].ICP;
+            }
+        }
     },
     
 }
